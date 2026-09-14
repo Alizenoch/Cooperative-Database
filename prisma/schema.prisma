@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Cooperative {
+  id                 Int      @id @default(autoincrement())
+  name               String
+  registrationNumber String?  @unique
+  cooperativeType    String
+  address            String?
+  provinceId         Int
+  province           Province @relation(fields: [provinceId], references: [id])
+  phone              String?
+  email              String?
+  status             String   @default("ACTIVE")
+  source             String   @default("SYSTEM")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  members Member[]
+}
+
+model Member {
+  id           Int       @id @default(autoincrement())
+  memberNumber String    @unique
+  firstName    String
+  lastName     String
+  gender       String?
+  dateOfBirth  DateTime?
+  phone        String?
+  email        String?
+  address      String?
+  status       String    @default("ACTIVE")
+  joinedAt     DateTime  @default(now())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  cooperativeId Int
+  cooperative   Cooperative @relation(fields: [cooperativeId], references: [id])
+}
+
+model Region {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  status    String   @default("ACTIVE")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  provinces Province[]
+}
+
+model Province {
+  id        Int      @id @default(autoincrement())
+  name      String
+  regionId  Int
+  status    String   @default("ACTIVE")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  region        Region         @relation(fields: [regionId], references: [id])
+  cooperatives  Cooperative[]
+  offices       Office[]
+  registrations Registration[]
+}
+
+model Office {
+  id         Int       @id @default(autoincrement())
+  name       String
+  officeType String
+  provinceId Int?
+  province   Province? @relation(fields: [provinceId], references: [id])
+  address    String?
+  phone      String?
+  email      String?
+  status     String    @default("ACTIVE")
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  registrations Registration[]
+  users         User[]
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String   @unique
+  password  String
+  role      String
+  status    String   @default("ACTIVE")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  officeId Int
+  office   Office @relation(fields: [officeId], references: [id])
+}
+
+model Registration {
+  id                 Int      @id @default(autoincrement())
+  applicationNumber  String   @unique
+  proposedName       String
+  cooperativeType    String
+  applicantFirstName String
+  applicantLastName  String
+  applicantEmail     String
+  applicantPhone     String?
+  status             String   @default("PAYMENT_PENDING")
+  submittedAt        DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  provinceId Int
+  province   Province @relation(fields: [provinceId], references: [id])
+  officeId   Int
+  office     Office   @relation(fields: [officeId], references: [id])
+
+  payment Payment?
+}
+
+model Payment {
+  id            Int       @id @default(autoincrement())
+  transactionId String    @unique
+  amount        Decimal
+  paymentMethod String
+  status        String    @default("PENDING")
+  paidAt        DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  registrationId Int          @unique
+  registration   Registration @relation(fields: [registrationId], references: [id])
+
+  receipt Receipt?
+}
+
+model Receipt {
+  id            Int      @id @default(autoincrement())
+  receiptNumber String   @unique
+  amount        Decimal
+  issuedAt      DateTime @default(now())
+  status        String   @default("ISSUED")
+
+  paymentId Int     @unique
+  payment   Payment @relation(fields: [paymentId], references: [id])
+}
