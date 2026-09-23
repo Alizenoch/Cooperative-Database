@@ -1,3 +1,5 @@
+// This file defines the database tables, fields and relationship
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -6,6 +8,7 @@ datasource db {
   provider = "postgresql"
 }
 
+// This tables contains information about the cooperatives
 model Cooperative {
   id                 Int      @id @default(autoincrement())
   name               String
@@ -23,7 +26,8 @@ model Cooperative {
 
   members Member[]
 }
-
+ 
+ // This table has information about the members
 model Member {
   id           Int       @id @default(autoincrement())
   memberNumber String    @unique
@@ -43,6 +47,7 @@ model Member {
   cooperative   Cooperative @relation(fields: [cooperativeId], references: [id])
 }
 
+// This table has information about the regions
 model Region {
   id        Int      @id @default(autoincrement())
   name      String   @unique
@@ -53,6 +58,7 @@ model Region {
   provinces Province[]
 }
 
+// This tables has information about the provinces
 model Province {
   id        Int      @id @default(autoincrement())
   name      String
@@ -67,6 +73,7 @@ model Province {
   registrations Registration[]
 }
 
+// This table has information about the office.
 model Office {
   id         Int       @id @default(autoincrement())
   name       String
@@ -84,6 +91,7 @@ model Office {
   users         User[]
 }
 
+// This table has information about the users.
 model User {
   id        Int      @id @default(autoincrement())
   firstName String
@@ -99,6 +107,7 @@ model User {
   office   Office @relation(fields: [officeId], references: [id])
 }
 
+// This table has information about registration.
 model Registration {
   id                 Int      @id @default(autoincrement())
   applicationNumber  String   @unique
@@ -120,6 +129,7 @@ model Registration {
   payment Payment?
 }
 
+// This table has information about the payment section
 model Payment {
   id            Int       @id @default(autoincrement())
   transactionId String    @unique
@@ -136,6 +146,7 @@ model Payment {
   receipt Receipt?
 }
 
+// This table has information about the payment receipt
 model Receipt {
   id            Int      @id @default(autoincrement())
   receiptNumber String   @unique
