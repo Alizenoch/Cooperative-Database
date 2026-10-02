@@ -8,7 +8,7 @@ The system uses Neon PostgreSQL as the cloud database. It stores information abo
 
 For Module #1, the main focus was setting up the cloud database, creating the database structure and relationships, connecting the application to the database, and performing CRUD operations.
 
-For Module #2, the focus is building the web application that provides an interface for registry staff to work with the cooperative database.
+For Module #2, the focus was building the web application that provides an interface for registry staff to work with the cooperative database.
 
 ## Features
 
@@ -68,6 +68,8 @@ The relationships are defined in the Prisma schema using primary and foreign key
 
 ## Current Progress
 
+The following parts of the system have been completed:
+
 - Neon PostgreSQL database has been set up.
 - Prisma schema has been created and validated.
 - Database tables and relationships have been created.
@@ -84,19 +86,25 @@ The relationships are defined in the Prisma schema using primary and foreign key
 - API routes have been created for cooperative operations.
 - Create, Read, Update, and Delete operations have been tested for cooperative records.
 
-For this module, the working parts of the application are **Login, Dashboard, and Cooperatives**. The other sections shown in the dashboard navigation are planned for later development.
+For this module, the main working parts of the application are **Login, Dashboard, and Cooperatives**. The other sections shown in the dashboard navigation are planned for later development.
 
 ## Module #1 – Cloud Database
 
-The focus of Module #1 was the cloud database. The project uses Neon PostgreSQL for storing cooperative data and Prisma to connect the database to the application.
+The focus of Module #1 was setting up the cloud database and connecting it to the application.
 
-The application provides a web interface for working with the database. The database operations include creating, reading, updating, and deleting cooperative records.
+The project uses Neon PostgreSQL for storing cooperative data and Prisma to connect the database to the application.
+
+The database schema includes tables for cooperatives, members, provinces, regions, and users. Relationships between the tables were created using Prisma.
+
+The application can perform Create, Read, Update, and Delete operations on cooperative records.
+
+The database was tested by connecting the Next.js application to Neon PostgreSQL and working with cooperative records through the application.
 
 ## Module #2 – Web App
 
-The focus of Module #2 is the web application for the Cooperative Database Management System.
+The focus of Module #2 was building the web application for the Cooperative Database Management System.
 
-For this module, I will focus on three main working sections:
+The three main working sections for this module are:
 
 - **Login**
 - **Dashboard**
@@ -108,7 +116,7 @@ The Cooperatives section allows registry staff to view existing cooperatives, se
 
 API routes are used to handle actions between the web application and the database.
 
-The other sections shown in the dashboard navigation will be developed later as the project continues. For this module, the demonstration will focus only on the Login, Dashboard, and Cooperatives sections.
+The other sections shown in the dashboard navigation will be developed later as the project continues. The Module #2 demonstration focuses on the Login, Dashboard, and Cooperatives sections.
 
 ## Getting Started
 
@@ -191,11 +199,40 @@ The following files were created or updated as part of the Web App module:
 - `package.json`
 - `prisma.config.ts`
 
+## Useful Websites
+
+The following websites were useful during the development of this project:
+
+- **Neon** – Used to create and manage the cloud PostgreSQL database.
+- **Prisma** – Used to create the database schema and connect the application to the database.
+- **Next.js** – Used to build the web application.
+- **React** – Used to build the user interface.
+- **Tailwind CSS** – Used to style the web application.
+- **GitHub** – Used to store and manage the project source code.
+
+## Future Work
+
+The current version of the system focuses on the Login, Dashboard, and Cooperatives sections.
+
+Future development will include:
+
+- Completing the Members section.
+- Completing the Registrations section.
+- Developing the Offices section.
+- Adding Documents management.
+- Adding Payments management.
+- Developing Reports.
+- Expanding User management.
+- Improving validation and error handling.
+- Adding additional search and reporting functions.
+- Improving the user interface based on feedback from registry staff.
+- Adding additional security features as the system develops.
+
+The project can continue to grow into a more complete Cooperative Registry system as additional requirements are identified.
+
 ## Video
 
-The Module #2 video walkthrough will be added here after the presentation is recorded.
-
-The video will demonstrate the working parts of the application:
+The Module #2 video walkthrough demonstrates the working parts of the application:
 
 1. Login
 2. Dashboard
@@ -206,6 +243,12 @@ The video will demonstrate the working parts of the application:
 7. Deleting a cooperative
 8. Code walkthrough
 
+Video walkthrough:
+
+https://www.youtube.com/watch?v=a6zuAOCEGo4
+
 ## GitHub Repository
 
-The source code for this project is available in the public GitHub repository.
+The source code for this project is available in the public GitHub repository:
+
+https://github.com/Alizenoch/Cooperative-Database
