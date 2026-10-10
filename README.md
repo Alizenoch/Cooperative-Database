@@ -252,3 +252,17 @@ https://www.youtube.com/watch?v=a6zuAOCEGo4
 The source code for this project is available in the public GitHub repository:
 
 https://github.com/Alizenoch/Cooperative-Database
+
+## Module #3 – TypeScript
+
+The third selected module for this project is TypeScript. TypeScript is used throughout the Cooperative Database Management System alongside Next.js and React.
+
+The application uses TypeScript to develop pages, components, functions, and API routes. It helps organize the code, define data types, and identify certain programming errors during development.
+
+TypeScript is integrated into the same project as the cloud database and web application. Together, the three selected modules are:
+
+- **Module #1 – Cloud Database:** Neon PostgreSQL and Prisma.
+- **Module #2 – Web App:** Next.js and React.
+- **Module #3 – TypeScript:** TypeScript for application development.
+
+These three modules work together to build the Cooperative Database Management System for managing cooperative records.
